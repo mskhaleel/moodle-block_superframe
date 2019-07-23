@@ -56,4 +56,20 @@ $capabilities = array(
 
         'clonepermissionsfrom' => 'moodle/site:manageblocks'
     ),
+    
+     'block/superframe:viewlink' => array(
+
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_BLOCK,
+        'archetypes' => array(
+           
+            
+            'manager' => CAP_ALLOW,
+            'teacher' => CAP_ALLOW,
+             
+          
+    )
+
+    
+    )
 );
