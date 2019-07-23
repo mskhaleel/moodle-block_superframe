@@ -56,12 +56,21 @@ class block_superframe extends block_base {
     function init() {
         $this->title = get_string('pluginname', 'block_superframe');
     }
+	
+	
+	  /**
+     * Allow block configuration.
+     */
+    function has_config() {
+        return true;
+    }
 
     /**
      * Add some text content to our block.
      */
     function get_content() {
-        global $USER;
+        global $USER, $CFG, $OUTPUT;
+		 
 
         // Do we have any content?
         if ($this->content !== null) {
@@ -76,10 +85,29 @@ class block_superframe extends block_base {
         // OK let's add some content.
         $this->content = new stdClass();
         $this->content->footer = '';
+        
+        //$this->content->text = get_string('welcomeuser', 'block_superframe',    
+                //$USER)."</br>". $this->content->tets = get_string('message','block_superframe');
+
+
+		//$this->content->text = '<br /><a href="' . $CFG->wwwroot . '/blocks/superframe/view.php">' .
+              //  get_string('viewlink', 'block_superframe') . '</a>';
+        
+        
         $this->content->text = get_string('welcomeuser', 'block_superframe',
                 $USER);
-
+           $blockid = $this->instance->id;
+        $url = new moodle_url('/blocks/superframe/view.php', ['blockid' => $blockid]);
+$this->content->text .= '<p>' . html_writer::link($url,
+        get_string('viewlink', 'block_superframe')) . '</p>';
+			
+				 
+				 
+				 
         return $this->content;
+		
+		
+		
     }
     /**
      * This is a list of places where the block may or
